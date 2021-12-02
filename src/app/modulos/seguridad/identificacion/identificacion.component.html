@@ -1,1 +1,55 @@
-<p>identificacion works!</p>
+<body ng-app="mainModule" ng-controller="mainController">
+  <div id="login-page" class="row">
+    <div class="col s12 z-depth-6 card-panel">
+        <!--1) estableco la funcion formGroup definida en el archivo .ts
+            2) asignamos un evento ngSubmit="mifuncion()", eso quiere decir que cuando haga el envio
+                se invoque una funcion especifico para este caso voy a configurarlo en la etiqueta
+                form pero tengo que tener un button con type llamado Submit para que funcione-->
+        <form [formGroup]="fgValidador" (ngSubmit)="IdentificarUsuario()" class="login-form">
+        <div class="row"></div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">mail_outline</i>
+            <input formControlName="usuario" class="validate" id="email" type="email" />
+            <label for="email" data-error="wrong" data-success="right"
+              >Email</label
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">lock_outline</i>
+            <input formControlName="clave" id="password" type="password" />
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m12 l12 login-text">
+            <input type="checkbox" id="remember-me" />
+            <label for="remember-me">Recordar Session</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+              <!--Si quiere asignar la funcion al button debo colocar el evento (Click)="NombreDelaFuncion()" dentro del button -->
+            <button [disabled]="!fgValidador.valid" type="submit"  class="btn waves-effect waves-light col s12"
+              >Login</button
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small">
+              <a routerLink="#">Registrate</a>
+            </p>
+          </div>
+          <div class="input-field col s6 m6 l6">
+            <p class="margin right-align medium-small">
+              <a routerLink="#">Olvide mi Contraseña</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
