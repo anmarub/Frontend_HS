@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MD5 } from 'crypto-js';
 import { SeguridadService } from '../../../servicios/seguridad.service';
 
@@ -21,7 +22,9 @@ export class IdentificacionComponent implements OnInit {
   //inyecto lo metodos que necesito para utilizar las funciones
   // 1) inyecto FormBuilder el cual fb va heredar todas las funciones de la clase
   //2) inyecto mi servicio de autenticacion seguridad.service servicioSeguridad va heredar todas las funciones de la clase
-  constructor(private fb: FormBuilder, private servicioSeguridad: SeguridadService) { }
+  constructor(private fb: FormBuilder, 
+              private servicioSeguridad: SeguridadService,
+              private router : Router) { }
 
   // se ejecuta cuando se inicia el componente
   ngOnInit(): void {
@@ -46,14 +49,19 @@ export class IdentificacionComponent implements OnInit {
     // llamo al metodo de autenticacion del servicio seguridad.service
     //paso los parametros de usuario y clave cifradas
     //como es un Observable debo suscribirme para poder recibir la respuesta
-    this.servicioSeguridad.IdentificarUsuario(usuario, cifrarClave).subscribe((datos: any) => {
-      // si el resultado es correcto
-      alert("Datos correctos");
-    }, (error: any) => {
-      // si el resultado es incorrecto
+    this.servicioSeguridad.IdentificarUsuario(usuario, cifrarClave).subscribe({
+      next: (datos : any) => {
+              // si el resultado es correcto llamo el metodo de AlmacenarUsuario que viene del servicioSeguridad
+      // esto guarda la informacion session en el localStorage
+      this.servicioSeguridad.AlmacenarSesion(datos);
+      // si el resultado es correcto redirecciono a la pagina principal
+      this.router.navigate(['/inicio']);
+      },
+      error: (error: any) => {
+        // si el resultado es incorrecto
       alert("Datos invalidos");
+      }
     });
-
   }
 
 }

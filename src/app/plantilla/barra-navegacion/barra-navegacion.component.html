@@ -3,18 +3,21 @@
       <a routerLink="/inicio" class="brand-logo">Logo</a>
       <a routerLink="/inicio" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a routerLink="/administracion/personas">Persona</a></li>
-        <li><a routerLink="/administracion/producto">Productos</a></li>
-        <li><a routerLink="seguridad/cambio-clave">Cambiar Clave</a></li>
-        <li><a routerLink="seguridad/identificar">Iniciar Session</a></li>
+        <!--para validaciones en el formulario iniciamos *ngIf -->
+        <li *ngIf= "seInicioSesion"><a routerLink="/administracion/personas">Persona</a></li>
+        <li *ngIf= "seInicioSesion"><a routerLink="/administracion/producto">Productos</a></li>
+        <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cambio-clave">Cambiar Clave</a></li>
+        <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cerrarSesion">Cerrar Session</a></li>
+        <li *ngIf= "!seInicioSesion"><a routerLink="seguridad/identificar">Iniciar Session</a></li>
         <!--Siempre debo usar routerLink para llamar una ruta.-->
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a routerLink="/administracion/personas">Persona</a></li>
-    <li><a routerLink="/administracion/producto">Productos</a></li>
-    <li><a routerLink="seguridad/cambio-clave">Cambiar Clave</a></li>
-    <li><a routerLink="seguridad/identificar">Iniciar Session</a></li>
+    <li *ngIf= "seInicioSesion"><a routerLink="/administracion/personas">Persona</a></li>
+    <li *ngIf= "seInicioSesion"><a routerLink="/administracion/producto">Productos</a></li>
+    <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cambio-clave">Cambiar Clave</a></li>
+    <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cerrarSesion">Cerrar Session</a></li>
+    <li *ngIf= "!seInicioSesion"><a routerLink="seguridad/identificar">Iniciar Session</a></li>
   </ul>
