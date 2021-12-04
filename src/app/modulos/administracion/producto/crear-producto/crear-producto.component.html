@@ -1,1 +1,67 @@
-<p>crear-producto works!</p>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario de contacto</title>
+</head>
+  <body>
+    <div class="contact_form">
+      <div class="formulario">
+        <h1>Formulario Crear Producto</h1>
+        <h3>Crea un producto segun tu necesidad</h3>
+
+        <form [formGroup]="fgValidador" (ngSubmit)="GuardarProducto()">
+          <p>
+            <label for="nombre" class="colocar_nombre"
+              >Nombre
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+            formControlName="nombre"
+              type="text"
+              name="producto_nombre"
+              id="nombre"
+              required="obligatorio"
+              placeholder="Escribe nombre Producto"
+            />
+          </p>
+
+          <p>
+            <label for="number" class="colocar_email"
+              >Precio
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+            formControlName="precio"
+              type="number"
+              name="precio"
+              id="precio_producto"
+              required="obligatorio"
+              placeholder="Escribe el Valor del producto"
+            />
+          </p>
+
+          <p>
+            <label for="link" class="colocar_telefono">Link </label>
+            <input
+            formControlName="imagen"
+              type="link"
+              name="link_producto"
+              id="link_producto"
+              placeholder="ingresa link del producto"
+            />
+          </p>
+
+          <button [disabled]="!fgValidador.valid" type="submit">
+            <p>Enviar</p>
+          </button>
+
+          <p class="aviso">
+            <span class="obligatorio"> * </span>los campos son obligatorios.
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- creado por javiniguez.com, Julio 2019 -->

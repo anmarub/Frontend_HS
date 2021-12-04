@@ -102,6 +102,19 @@ export class SeguridadService {
   //devuelvo la informacion en el localStorage con la llave datosSesion
     return datosString
   }
-  
+  //creo un metodo para obtener el token y compartir con las demas partes de la aplicacion
+  ObtenerToken(){
+      //obtego los datos de la session que estan en el localStorage
+      let datosString = localStorage.getItem("datosSesion");
+      //valido si existe la informacion en el localStorage con la llave datosSesion
+      if (datosString){
+        //convierto los datos string un objeto con la funcion parse
+        let datos = JSON.parse(datosString);
+        //devuelvo el objecto
+        return datos.tk;
+      }else{
+        return '';
+      }
+  }
 
 }

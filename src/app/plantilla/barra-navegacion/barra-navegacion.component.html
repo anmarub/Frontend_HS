@@ -5,7 +5,7 @@
       <ul class="right hide-on-med-and-down">
         <!--para validaciones en el formulario iniciamos *ngIf -->
         <li *ngIf= "seInicioSesion"><a routerLink="/administracion/personas">Persona</a></li>
-        <li *ngIf= "seInicioSesion"><a routerLink="/administracion/producto">Productos</a></li>
+        <li *ngIf= "seInicioSesion"><a routerLink="/administracion/listar-producto">Productos</a></li>
         <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cambio-clave">Cambiar Clave</a></li>
         <li *ngIf= "seInicioSesion"><a routerLink="seguridad/cerrarSesion">Cerrar Session</a></li>
         <li *ngIf= "!seInicioSesion"><a routerLink="seguridad/identificar">Iniciar Session</a></li>
